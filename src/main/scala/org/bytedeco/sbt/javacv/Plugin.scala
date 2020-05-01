@@ -16,15 +16,13 @@ object Plugin extends AutoPlugin {
       libraryDependencies += {
         "org.bytedeco" % "javacv" % javaCVVersion.value excludeAll (
           ExclusionRule(organization = "org.bytedeco.javacpp-presets"),
-          ExclusionRule(organization = "org.bytedeco.javacpp")
-        )
+          ExclusionRule(organization = "org.bytedeco.javacpp"))
       },
-      JavaCppPlugin.autoImport.javaCppPresetLibs ++= JavaCVCppPresets.libs
-    )
+      JavaCppPlugin.autoImport.javaCppPresetLibs ++= JavaCVCppPresets.libs)
   }
 
   object Versions {
-    val javaCVVersion = "1.4"
+    val javaCVVersion = "1.5.3"
   }
 
   object autoImport {
@@ -33,11 +31,24 @@ object Plugin extends AutoPlugin {
 
   object JavaCVCppPresets {
     /**
-     * List of default JavaCPP preset names and versions that will be added by this plugin
+     * List of default JavaCPP preset names and versions that will be added by this plugin.
+     * From pom.xml of JavaCV.
      */
     val libs = Seq(
-      "opencv" -> "3.4.3"
-    )
+      "openblas" -> "0.3.9",
+      "opencv" -> "4.3.0",
+      "ffmpeg" -> "4.2.2",
+      "flycapture" -> "2.13.3.31",
+      "libdc1394" -> "2.2.6",
+      "libfreenect" -> "0.5.7",
+      "libfreenect2" -> "0.2.0",
+      "librealsense" -> "1.12.4",
+      "librealsense2" -> "2.29.0",
+      "videoinput" -> "0.200",
+      "artoolkitplus" -> "2.3.1",
+      "flandmark" -> "1.07",
+      "leptonica" -> "1.79.0",
+      "tesseract" -> "4.1.1")
   }
 
   override def requires: Plugins = plugins.JvmPlugin && JavaCppPlugin
